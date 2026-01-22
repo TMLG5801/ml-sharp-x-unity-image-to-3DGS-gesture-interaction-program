@@ -44,3 +44,8 @@ ml-sharp/output/
 # ⚠️ 例外规则：确保我们要的自动导入路径存在
 # (即使里面是空的，也保留这个文件夹结构)
 !Gaussian-URP/Assets/AutoImport/.keep
+
+# 忽略二进制大文件
+*.bytes
+
+ml-sharp-main/

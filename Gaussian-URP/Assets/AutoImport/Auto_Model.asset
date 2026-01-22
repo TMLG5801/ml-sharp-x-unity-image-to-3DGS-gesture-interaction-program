@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: GaussianSplatting::GaussianSplatting.Runtime.GaussianSplatAsset
   m_FormatVersion: 20231020
   m_SplatCount: 1179648
-  m_BoundsMin: {x: -2.5435143, y: -2.344096, z: -4.5843554}
-  m_BoundsMax: {x: 1.9638119, y: 2.1092205, z: 5.6984053}
+  m_BoundsMin: {x: -4.330567, y: -3.2356977, z: -5.9240065}
+  m_BoundsMax: {x: 4.7226458, y: 2.5613914, z: 20.496065}
   m_DataHash:
     serializedVersion: 2
-    Hash: 45282818a34027ab81246ec2b63aede9
+    Hash: b821824f0203463259eec9b9339b7076
   m_PosFormat: 0
   m_ScaleFormat: 0
   m_SHFormat: 0

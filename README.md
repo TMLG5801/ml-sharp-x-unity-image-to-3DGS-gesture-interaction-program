@@ -58,6 +58,9 @@ CUDA Toolkit: 与 PyTorch 版本匹配的版本。
 
 ## 数据流
 
+<img width="1781" height="2565" alt="System Architecture   Data Flow Diagram" src="https://github.com/user-attachments/assets/c901ac36-5233-40d6-8f0d-30ed18af507a" />
+
+
 ## Installation Guide
 
 This project uses an automated script for deployment. Please strictly follow the steps below.
@@ -123,3 +126,5 @@ Viewing Mode: MediaPipe-based air gesture control (open hand to rotate, pinch to
 Local Deployment: Entirely reliant on local GPU computing power, requiring no cloud API, and supports offline operation.
 
 ## Data flow diagram
+
+<img width="1781" height="2565" alt="System Architecture   Data Flow Diagram" src="https://github.com/user-attachments/assets/69b186fb-fe4e-4ec6-84cb-fd89f7b72022" />

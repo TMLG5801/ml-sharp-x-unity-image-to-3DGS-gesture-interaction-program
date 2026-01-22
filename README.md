@@ -101,7 +101,7 @@ Double-click **`start_app.bat`** to start the program.
 
 This project implements an end-to-end system that generates high-quality 3D scenes from a single RGB static image and allows for real-time interaction. The system utilizes 3D Gaussian Splatting (3DGS) technology to address the edge stretching and volume loss problems in traditional mesh reconstruction, and achieves contactless interaction based on a natural user interface (NUI) through MediaPipe gesture recognition.
 
-The system uses a B/S (Backend/Frontend) heterogeneous architecture:
+The system uses a B/S (Backend/Frontend) heterogeneous architecture
 
 Backend (Python): Based on the Apple ml-sharp framework for deep inference and point cloud generation, using plyfile and NumPy for data cleaning and spatial normalization, and transmitting gesture data via UDP protocol.
 

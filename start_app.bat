@@ -1,22 +1,31 @@
 @echo off
-chcp 65001 >nul
-title [启动器] ML-Sharp x Unity
+setlocal
 
-if not exist "venv" (
-    cls
-    echo ========================================================
-    echo [ERROR] 未找到运行环境！
-    echo ========================================================
+:: Switch to script directory
+cd /d "%~dp0"
+
+echo [INFO] Checking environment...
+
+:: Check if venv exists
+if not exist "venv\Scripts\python.exe" (
     echo.
-    echo 请先双击运行 "install_env.bat" 进行安装。
+    echo [ERROR] Virtual environment not found!
+    echo Path: %~dp0venv\Scripts\python.exe
+    echo.
+    echo Please run 'install_env.bat' first to install dependencies.
     echo.
     pause
-    exit
+    exit /b
 )
 
-echo 正在启动程序...
-call venv\Scripts\activate.bat
-:: 启动你的启动器脚本
-python ml-sharp/Launcher_Ultimate.py
+echo [INFO] Launching ML-Sharp x Unity...
 
-pause
+:: Run the script using the venv python directly
+"venv\Scripts\python.exe" "ml-sharp/Launcher_Ultimate.py"
+
+:: Check for errors
+if %errorlevel% neq 0 (
+    echo.
+    echo [ERROR] The program exited with an error.
+    pause
+)

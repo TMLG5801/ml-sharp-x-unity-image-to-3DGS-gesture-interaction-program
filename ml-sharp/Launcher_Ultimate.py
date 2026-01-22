@@ -318,7 +318,7 @@ def process_logic(img_path, load_history=False):
         if not load_history:
             focal = get_focal_length(img_path)
             write_camera_config(focal)
-            status_lbl.config(text="AI 生成中 (首次可能较慢)...")
+            status_lbl.config(text="AI 生成中 (首次运行需要下载模型，可能较慢)...")
             progress['value'] = 20
             
             # 运行 AI 生成

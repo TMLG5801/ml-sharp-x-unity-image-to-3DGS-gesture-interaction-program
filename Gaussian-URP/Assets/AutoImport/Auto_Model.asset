@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: GaussianSplatting::GaussianSplatting.Runtime.GaussianSplatAsset
   m_FormatVersion: 20231020
   m_SplatCount: 1179648
-  m_BoundsMin: {x: -3.0671413, y: -1.9769437, z: -3.2245123}
-  m_BoundsMax: {x: 4.113928, y: 1.625463, z: 3.2268615}
+  m_BoundsMin: {x: -2.5435143, y: -2.344096, z: -4.5843554}
+  m_BoundsMax: {x: 1.9638119, y: 2.1092205, z: 5.6984053}
   m_DataHash:
     serializedVersion: 2
-    Hash: 3e0b2d5a3c3c94e31931ac26e1c5c645
+    Hash: 45282818a34027ab81246ec2b63aede9
   m_PosFormat: 0
   m_ScaleFormat: 0
   m_SHFormat: 0
@@ -26,6 +26,6 @@ MonoBehaviour:
   m_PosData: {fileID: 4900000, guid: bea49a803ce4c294b98886ed9f011fdb, type: 3}
   m_ColorData: {fileID: 4900000, guid: 72d5e90b9ae4ba34184b05ed75a2a65c, type: 3}
   m_OtherData: {fileID: 4900000, guid: ca405b3539a8f334d8c29890529affa3, type: 3}
-  m_SHData: {fileID: 4900000, guid: 7dee9506b68fe244084de5774ff18806, type: 3}
+  m_SHData: {fileID: 4900000, guid: 5173cc8149918f44193061d0ec8db941, type: 3}
   m_ChunkData: {fileID: 0}
   m_Cameras: []

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEditor;
-using UnityEditor.SceneManagement;
+using UnityEditor.SceneManagement; // 必须引用：用于场景管理
 using System.IO;
 using System.Reflection;
 using GaussianSplatting.Editor;
@@ -10,21 +10,44 @@ public class AutoImporter
 {
     static string plyName = "Auto_Model.ply";
     static string folderPath = "Assets/AutoImport";
+    
+    // 👇 指定主场景路径
+    static string mainScenePath = "Assets/GSTestScene.unity";
 
     public static void Run()
     {
-        string plyPath = Path.Combine(folderPath, plyName);
-        if (!File.Exists(plyPath)) return;
+        if (EditorSceneManager.GetActiveScene().path != mainScenePath)
+        {
+            if (File.Exists(mainScenePath))
+            {
+                EditorSceneManager.OpenScene(mainScenePath);
+                Debug.Log($"✅ [AutoImporter] 已切换至主场景: {mainScenePath}");
+            }
+            else
+            {
+                Debug.LogError($"❌ 未找到场景文件: {mainScenePath}，将继续在当前场景运行。");
+            }
+        }
+        // =======================================================
 
-        // 1. 导入资源
+        string plyPath = Path.Combine(folderPath, plyName);
+        
+        // 检查模型文件是否存在
+        if (!File.Exists(plyPath)) 
+        {
+            Debug.LogWarning($"⚠️ 未找到生成的 PLY 文件: {plyPath}，仅打开场景。");
+            return;
+        }
+
+        // 2. 导入资源
         AssetDatabase.ImportAsset(plyPath, ImportAssetOptions.ForceUpdate);
         GenerateAsset(plyPath);
         AssetDatabase.Refresh();
 
-        // 2. 设置场景物体
+        // 3. 设置场景物体 (此时已经处于 GSTestScene 中)
         GameObject targetObj = SetupSceneObject(plyPath);
 
-        // 3. 挂载控制脚本
+        // 4. 挂载控制脚本
         var gesture = targetObj.GetComponent<GestureController>();
         if (gesture == null) gesture = targetObj.AddComponent<GestureController>();
 
@@ -34,21 +57,20 @@ public class AutoImporter
         gesture.fovSensitivity = 10.0f;
         gesture.playIntro = true; // 确保动画开启
 
-        // 4. 清理旧脚本 (包括之前的 AppearanceEffect)
+        // 5. 清理旧脚本 (防止冲突)
         var oldScript1 = targetObj.GetComponent("RotateCard") as UnityEngine.Component;
         if (oldScript1 != null) UnityEngine.Object.DestroyImmediate(oldScript1);
 
-        // ⚠️ 关键：清理掉 AppearanceEffect，防止冲突
         var oldScript2 = targetObj.GetComponent("AppearanceEffect") as UnityEngine.Component;
         if (oldScript2 != null) UnityEngine.Object.DestroyImmediate(oldScript2);
 
-        // 5. 保存场景
+        // 6. 保存场景
         EditorUtility.SetDirty(targetObj);
         EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
         AssetDatabase.SaveAssets();
         EditorSceneManager.SaveScene(EditorSceneManager.GetActiveScene());
 
-        // 6. 延迟启动
+        // 7. 延迟启动 Play 模式
         EditorApplication.delayCall += () =>
         {
             var gameViewType = System.Type.GetType("UnityEditor.GameView,UnityEditor");
@@ -56,6 +78,8 @@ public class AutoImporter
             EditorApplication.isPlaying = true;
         };
     }
+
+    // --- 以下保持不变 ---
 
     static void GenerateAsset(string plyPath)
     {
@@ -76,12 +100,15 @@ public class AutoImporter
     {
         string assetName = Path.GetFileNameWithoutExtension(plyPath);
         string assetPath = $"{folderPath}/{assetName}.asset";
+        
+        // 在当前场景查找 Photo_Card
         GameObject targetObj = GameObject.Find("Photo_Card");
         if (targetObj == null)
         {
             targetObj = new GameObject("Photo_Card");
             targetObj.AddComponent<GaussianSplatRenderer>();
         }
+        
         var renderer = targetObj.GetComponent<GaussianSplatRenderer>();
         var gsAsset = AssetDatabase.LoadAssetAtPath<GaussianSplatAsset>(assetPath);
         if (gsAsset != null) { renderer.m_Asset = gsAsset; EditorUtility.SetDirty(targetObj); }

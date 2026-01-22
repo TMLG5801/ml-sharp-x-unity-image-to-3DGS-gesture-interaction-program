@@ -30,7 +30,7 @@ Please scroll down for the English version.
 
 本项目实现了一个端到端的从单张 RGB 静态图像生成高质量三维场景并进行实时交互的系统。系统利用 3D Gaussian Splatting (3DGS) 技术解决传统 Mesh 重建中的边缘拉伸与体积缺失问题，并通过 MediaPipe 手势识别实现了基于自然用户界面 (NUI) 的无接触交互。
 
-系统采用 B/S (Backend/Frontend) 异构架构：
+系统采用 B/S (Backend/Frontend) 异构架构
 
 后端 (Python)：基于 Apple ml-sharp 框架进行深度推理与点云生成，利用 plyfile 与 NumPy 进行数据清洗与空间归一化，并通过 UDP 协议传输手势数据。
 

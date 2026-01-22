@@ -1,16 +1,27 @@
-## 安装与运行指南 (Installation Guide)
+## 安装与运行指南
 
 本项目采用自动化脚本部署，请严格按照以下步骤操作。
 
-This project uses an automated script for deployment. Please strictly follow the steps below.
+### 1. 前置准备
 
-### 1. 前置准备 (Prerequisites)
+硬件要求
+
+GPU: NVIDIA GPU。
+
+Webcam: 用于手势识别的普通 USB 摄像头。
+
 **必须安装 Python 3.10！** 如果你的电脑没有 Python，或者版本不对，请先安装。
 
  [点击下载 Python 3.10 (Windows 64位)](https://www.python.org/ftp/python/3.10.11/python-3.10.11-amd64.exe)
  
  **⚠️ 重要：** 安装时务必勾选底部的 **"Add Python 3.10 to PATH"** (添加到环境变量)，否则脚本无法运行！
     (如果不确定是否安装成功，请打开 CMD 输入 `python --version` 检查)
+
+Unity Engine: Unity6(6000.2.15f1) (需安装 Universal Render Pipeline)。
+
+Unity 插件: Gaussian Splatting for Unity (需预先导入项目中)。
+
+CUDA Toolkit: 与 PyTorch 版本匹配的版本。
 
 ### 2. 一键安装环境
 双击项目目录下的 **`install_env.bat`**。
@@ -21,7 +32,43 @@ This project uses an automated script for deployment. Please strictly follow the
 双击 **`start_app.bat`** 即可启动。
 * 首次运行时会弹窗提示选择 Unity.exe 的路径，请根据你电脑的实际安装位置选择。
 
+## 项目介绍
+
+本项目实现了一个端到端的从单张 RGB 静态图像生成高质量三维场景并进行实时交互的系统。系统利用 3D Gaussian Splatting (3DGS) 技术解决传统 Mesh 重建中的边缘拉伸与体积缺失问题，并通过 MediaPipe 手势识别实现了基于自然用户界面 (NUI) 的无接触交互。
+
+系统采用 B/S (Backend/Frontend) 异构架构：
+
+后端 (Python)：基于 Apple ml-sharp 框架进行深度推理与点云生成，利用 plyfile 与 NumPy 进行数据清洗与空间归一化，并通过 UDP 协议传输手势数据。
+
+前端 (Unity)：基于 URP 管线渲染 3DGS 模型，通过自定义 Editor 脚本实现资产自动导入与场景构建，支持鼠标编辑与手势漫游双模式。
+
+主要特性 (Features)
+
+单图三维化：推荐使用苹果设备拍摄的原图（带有焦距等信息），支持 JPG/PNG 等格式输入，一键生成带有光影体积感的 3DGS 模型 。
+
+全自动工作流：集成了 Python 推理到 Unity 资产导入的全流程，自动处理 PLY 格式转换、坐标系修正 (Flip Y/Mirror X) 与组件挂载 。
+
+多模态交互：
+
+编辑模式：鼠标精细控制旋转、平移与 FOV 调整 。
+
+查看模式：基于 MediaPipe 的隔空手势控制（张手旋转、捏合缩放）及 WASD 漫游 。
+
+本地化部署：完全依赖本地 GPU 算力，无需云端 API，支持离线运行 。
+
+## 数据流
+
+## Installation Guide
+
+This project uses an automated script for deployment. Please strictly follow the steps below.
+
 ### 1. Prerequisites
+
+Hardware Requirements
+
+GPU: NVIDIA GPU.
+
+Webcam: Standard USB webcam for gesture recognition.
 
 **Python 3.10 is required!** If your computer does not have Python, or the version is incorrect, please install it first.
 
@@ -30,6 +77,12 @@ This project uses an automated script for deployment. Please strictly follow the
 **⚠️ Important:** During installation, be sure to check the box at the bottom for **"Add Python 3.10 to PATH"** (add to environment variables), otherwise the script will not run!
 
 (If you are unsure whether the installation was successful, please open CMD and type `python --version` to check.)
+
+Unity Engine: Unity 6 (6000.2.15f1) (Universal Render Pipeline required).
+
+Unity Plugin: Gaussian Splatting for Unity (must be pre-imported into your project).
+
+CUDA Toolkit: Version compatible with PyTorch.
 
 ### 2. One-Click Environment Installation
 Double-click the **`install_env.bat` file in the project directory.
@@ -45,33 +98,7 @@ Double-click **`start_app.bat`** to start the program.
 * Upon first run, a pop-up window will prompt you to select the path to Unity.exe. Please select the path according to your computer's actual installation location.
 
 
-## 项目介绍 (Introduction)
-
-本项目实现了一个端到端的从单张 RGB 静态图像生成高质量三维场景并进行实时交互的系统。系统利用 3D Gaussian Splatting (3DGS) 技术解决传统 Mesh 重建中的边缘拉伸与体积缺失问题，并通过 MediaPipe 手势识别实现了基于自然用户界面 (NUI) 的无接触交互。
-
-系统采用 B/S (Backend/Frontend) 异构架构：
-
-后端 (Python)：基于 Apple ml-sharp 框架进行深度推理与点云生成，利用 plyfile 与 NumPy 进行数据清洗与空间归一化，并通过 UDP 协议传输手势数据。
-
-前端 (Unity)：基于 URP 管线渲染 3DGS 模型，通过自定义 Editor 脚本实现资产自动导入与场景构建，支持鼠标编辑与手势漫游双模式。
-
-主要特性 (Features)
-
-单图三维化：推荐使用苹果设备拍摄的原图（带有焦距等信息），支持 JPG/PNG 等格式输入，一键生成带有光影体积感的 3DGS 模型 。
-
-
-全自动工作流：集成了 Python 推理到 Unity 资产导入的全流程，自动处理 PLY 格式转换、坐标系修正 (Flip Y/Mirror X) 与组件挂载 。
-
-多模态交互：
-
-
-编辑模式：鼠标精细控制旋转、平移与 FOV 调整 。
-
-
-查看模式：基于 MediaPipe 的隔空手势控制（张手旋转、捏合缩放）及 WASD 漫游 。
-
-
-本地化部署：完全依赖本地 GPU 算力，无需云端 API，支持离线运行 。
+## Introduction
 
 This project implements an end-to-end system for generating high-quality 3D scenes from a single RGB static image and enabling real-time interaction. The system utilizes 3D Gaussian Splatting (3DGS) technology to solve the edge stretching and volume loss problems in traditional mesh reconstruction, and achieves contactless interaction based on a Natural User Interface (NUI) through MediaPipe gesture recognition.
 
@@ -95,40 +122,4 @@ Viewing Mode: MediaPipe-based air gesture control (open hand to rotate, pinch to
 
 Local Deployment: Entirely reliant on local GPU computing power, requiring no cloud API, and supports offline operation.
 
-
-## 环境依赖 (Prerequisites)
-
-硬件要求
-
-GPU: NVIDIA GPU。
-
-Webcam: 用于手势识别的普通 USB 摄像头。
-
-软件要求
-Unity Engine: Unity6(6000.2.15f1) (需安装 Universal Render Pipeline)。
-
-Python: 3.10+
-
-CUDA Toolkit: 与 PyTorch 版本匹配的版本。
-
-Unity 插件: Gaussian Splatting for Unity (需预先导入项目中)。
-
-Hardware Requirements
-
-GPU: NVIDIA GPU.
-
-Webcam: Standard USB webcam for gesture recognition.
-
-Software Requirements
-
-Unity Engine: Unity 6 (6000.2.15f1) (Universal Render Pipeline required).
-
-Python: 3.10+
-
-CUDA Toolkit: Version compatible with PyTorch.
-
-Unity Plugin: Gaussian Splatting for Unity (must be pre-imported into your project).
-
-## 数据流 (Data flow diagram)
-
-<img width="1781" height="2565" alt="System Architecture   Data Flow Diagram" src="https://github.com/user-attachments/assets/5b37a83c-c960-46d7-8483-eb72c932e7ec" />
+## Data flow diagram

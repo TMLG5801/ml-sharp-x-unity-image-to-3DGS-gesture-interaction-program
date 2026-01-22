@@ -1,0 +1,46 @@
+# ========================
+# 1. Unity 核心忽略规则
+# ========================
+# 忽略巨大的 Library 文件夹 (Unity 会自动重新生成)
+**/[Ll]ibrary/
+**/[Tt]emp/
+**/[Oo]bj/
+**/[Bb]uild/
+**/[Bb]uilds/
+**/[Ll]ogs/
+**/[Uu]ser[Ss]ettings/
+
+# 忽略 Visual Studio 生成的工程文件
+*.sln
+*.csproj
+.vs/
+
+# 忽略 Unity 自动生成的备份
+*.unitypackage
+*.pidb.meta
+sysinfo.txt
+
+# ========================
+# 2. Python & 环境忽略规则
+# ========================
+# 忽略巨大的虚拟环境 (2GB+)
+venv/
+sharp-env/
+.env
+
+# 忽略模型缓存
+cache/
+**/__pycache__/
+*.pyc
+
+# ========================
+# 3. 项目特定生成的临时文件
+# ========================
+# 忽略生成的中间产物
+ml-sharp/output/
+*.ply
+*.log
+
+# ⚠️ 例外规则：确保我们要的自动导入路径存在
+# (即使里面是空的，也保留这个文件夹结构)
+!Gaussian-URP/Assets/AutoImport/.keep

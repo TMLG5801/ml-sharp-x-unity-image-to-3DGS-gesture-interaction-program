@@ -1,3 +1,16 @@
+<h1>ML-Sharp x Unity: Image to 3DGS</h1>
+
+<!-- 徽章区域 -->
+[![Python](https://img.shields.io/badge/Python-3.10-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![Unity](https://img.shields.io/badge/Unity-6000.x-000000?logo=unity&logoColor=white)](https://unity.com/)
+[![Powered By](https://img.shields.io/badge/Model-Apple%20ml--sharp-FF9900)](https://github.com/apple/ml-sharp)
+[![Render](https://img.shields.io/badge/Render-3D%20Gaussian%20Splatting-F3C74D)](https://github.com/aras-p/UnityGaussianSplatting)
+[![Interaction](https://img.shields.io/badge/Interaction-MediaPipe%20Hand-4285F4?logo=google&logoColor=white)](https://developers.google.com/mediapipe)
+[![Platform](https://img.shields.io/badge/Platform-Windows-0078D6?logo=windows&logoColor=white)](https://www.microsoft.com/windows)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
+</div>
+
 Please scroll down for the English version.
 
 ## 一、安装与运行指南

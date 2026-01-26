@@ -9,6 +9,11 @@
 [![Platform](https://img.shields.io/badge/Platform-Windows-0078D6?logo=windows&logoColor=white)](https://www.microsoft.com/windows)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
+<img width="5120" height="1600" alt="sample2" src="https://github.com/user-attachments/assets/9dfe3fe3-f767-4f8a-bc25-4d1f0ec23ff2" />
+<br>
+  <sub> 实机演示截图(Project demo screenshots)
+</p>
+
 </div>
 
 Please scroll down for the English version.

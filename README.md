@@ -15,7 +15,7 @@ Please scroll down for the English version.
 <sub> 实机演示截图(Project demo screenshots)
 </p>
 
-[演示视频(Demo video)](www.bilibili.com/video/BV1os6qBwEEK)
+[演示视频(Demo video)](https://www.bilibili.com/video/BV1os6qBwEEK/?vd_source=6fa8f14d1490bc94ef38652d54e6c345)
 </div>
 
 ## 一、安装与运行指南
